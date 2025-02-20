@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nic Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #40E0D0, #4169E1, #800080);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-large {
+            width: 200px;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .welcome-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .logo-large {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Nic Tech Logo" class="logo">
+        <h1>Nic Tech</h1>
+    </header>
+
+    <main>
+        <h2 class="hero-title">Welcome to the Future</h2>
+        <img src="assets/logo.png" alt="Nic Tech Logo" class="logo-large">
+        <p class="welcome-text">Welcome to Officially Nic Tech Site</p>
+        <div class="button-container">
+            <a href="#" class="button">The Main Game</a>
+            <a href="#" class="button">Roblox Group</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2022 by Nic Tech Copyrights</p>
+    </footer>
+</body>
+</html>
