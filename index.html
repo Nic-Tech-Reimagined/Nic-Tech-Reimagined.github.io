@@ -213,6 +213,27 @@
             color: white;
             text-align: center;
             padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .discord-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .discord-link:hover {
+            opacity: 0.8;
+        }
+
+        .discord-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
         }
 
         @media (max-width: 768px) {
@@ -282,6 +303,10 @@
 
     <footer>
         <p>© 2022 by Nic Tech Copyrights</p>
+        <a href="https://discord.gg/your-discord-invite" class="discord-link" target="_blank">
+            Discord Server
+            <img src="assets/discord.png" alt="Discord Server" class="discord-icon">
+        </a>
     </footer>
 
     <script>
