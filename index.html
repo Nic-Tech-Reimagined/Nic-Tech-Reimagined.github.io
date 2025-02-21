@@ -135,6 +135,70 @@
             transform: translateY(-2px);
         }
 
+        .game-cards {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 350px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .game-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .game-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .game-card.active .game-status {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .game-card.discontinued .game-status {
+            background: #f44336;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .game-cards {
+                gap: 1rem;
+            }
+
+            .game-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+
         footer {
             background: rgba(0, 0, 0, 0.5);
             color: white;
@@ -161,6 +225,7 @@
         <nav>
             <a href="#home" onclick="showSection('home')">Home</a>
             <a href="#about" onclick="showSection('about')">About</a>
+            <a href="#games" onclick="showSection('games')">Games</a>
         </nav>
     </header>
 
@@ -180,6 +245,26 @@
                 <h2>About Nic Tech</h2>
                 <p>Nic Tech is at the forefront of innovation, combining cutting-edge technology with creative gaming experiences. Our mission is to create engaging and immersive content that pushes the boundaries of what's possible in the digital realm.</p>
                 <p>Founded with a passion for gaming and technology, we strive to build a community where creativity thrives and new ideas come to life. Whether it's through our main game or our active Roblox group, we're committed to delivering exceptional experiences to our users.</p>
+            </div>
+        </section>
+
+        <section id="games" class="section">
+            <div class="about-content">
+                <h2>Our Games</h2>
+                <div class="game-cards">
+                    <div class="game-card active">
+                        <div class="game-status">Active</div>
+                        <h3>Nic Tech: Subterranean Research Facility</h3>
+                        <p>Experience our latest and actively developed game. Explore the mysterious underground facility and uncover its secrets.</p>
+                        <a href="https://www.roblox.com/games/16502153598/Nic-Tech-Subterranean-Research-Facility-Beta" class="button" target="_blank">Play Now</a>
+                    </div>
+                    <div class="game-card discontinued">
+                        <div class="game-status">Discontinued</div>
+                        <h3>Nic Tech: Research Facility</h3>
+                        <p>Our original game that started it all. While no longer actively developed, it remains available for those interested in Nic Tech's history.</p>
+                        <a href="https://www.roblox.com/games/8543159388/Nic-Tech-Research-Facility-ALPHA" class="button" target="_blank">View Game</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
