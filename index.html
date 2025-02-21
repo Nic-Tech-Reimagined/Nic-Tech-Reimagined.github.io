@@ -37,6 +37,51 @@
             font-size: 1.5rem;
         }
 
+        nav {
+            margin-left: auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+        }
+
+        .section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
         main {
             flex: 1;
             display: flex;
@@ -113,20 +158,49 @@
     <header>
         <img src="assets/logo.png" alt="Nic Tech Logo" class="logo">
         <h1>Nic Tech</h1>
+        <nav>
+            <a href="#home" onclick="showSection('home')">Home</a>
+            <a href="#about" onclick="showSection('about')">About</a>
+        </nav>
     </header>
 
     <main>
-        <h2 class="hero-title">Welcome to the Future</h2>
-        <img src="assets/logo.png" alt="Nic Tech Logo" class="logo-large">
-        <p class="welcome-text">Welcome to Officially Nic Tech Site</p>
-        <div class="button-container">
-            <a href="#" class="button">The Main Game</a>
-            <a href="#" class="button">Roblox Group</a>
-        </div>
+        <section id="home" class="section active">
+            <h1 class="hero-title">Welcome to the Future</h1>
+            <img src="assets/logo.png" alt="Nic Tech Logo" class="logo-large">
+            <p class="welcome-text">Welcome to Offically Nic Tech Site</p>
+            <div class="button-container">
+                <a href="#" class="button">The Main Game</a>
+                <a href="#" class="button">Roblox Group</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="about-content">
+                <h2>About Nic Tech</h2>
+                <p>Nic Tech is at the forefront of innovation, combining cutting-edge technology with creative gaming experiences. Our mission is to create engaging and immersive content that pushes the boundaries of what's possible in the digital realm.</p>
+                <p>Founded with a passion for gaming and technology, we strive to build a community where creativity thrives and new ideas come to life. Whether it's through our main game or our active Roblox group, we're committed to delivering exceptional experiences to our users.</p>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>© 2022 by Nic Tech Copyrights</p>
     </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Handle initial section display based on hash
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.slice(1) || 'home';
+            showSection(hash);
+        });
+    </script>
 </body>
 </html>
