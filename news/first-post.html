@@ -65,17 +65,26 @@
 
         .post-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
         }
 
         .post-title {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .post-meta {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .post-content {
@@ -143,7 +152,10 @@
         <article class="post-container">
             <header class="post-header">
                 <h1 class="post-title">Welcome to Nic Tech Blog</h1>
-                <div class="post-meta">February 27, 2024</div>
+                <div class="post-meta">
+                    <span>Created ate:</span>
+                    <time datetime="2024-02-27">February 27, 2024</time>
+                </div>
             </header>
 
             <div class="post-content">
