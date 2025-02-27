@@ -1,0 +1,31 @@
+{{define "title"}}About | {{.Blogo.Title}}{{end}}
+
+{{define "extraHead"}}
+<meta property="og:type" content="website" />
+<meta property="og:type" content="website" />
+<meta name="description" content="{{.Blogo.Description}}">
+<meta property="og:description" content="{{.Blogo.Description}}" />
+<meta name="keywords" content="{{.Blogo.Keywords}}">
+<meta property="og:title" content="About {{.Blogo.Title}}" />
+<meta property="og:url" content="{{.Blogo.Url}}" />
+<link rel="stylesheet" type="text/css" href="/static/css/markdown.css">
+<!--Add canonical url-->
+<link rel="canonical" href="{{.Blogo.Url}}" />
+{{end}}
+
+{{define "main"}}
+<section class="block px-4 mt-8">
+    <h1 class="mb-12 text-4xl text-center uppercase">About</h1>
+    <div id="markdown" class="pb-12 prose prose-2xl prose-blue prose-code:text-base prose-hr:border-zinc-600 prose-hr:dark:border-zinc-400 prose-blockquote:border-blue-600 prose-blockquote:dark:border-blue-900 dark:prose-invert font-garamond">
+        {{if ne .About.Html ""}}
+            {{html .About.Html}}
+        {{else}}
+            <div class="flex flex-col items-center">
+                <p class="text-xl text-center">
+                    🫣 Nothing to see here!
+                </p>                
+            </div>
+        {{end}}
+    </div>
+</section>
+{{end}}
