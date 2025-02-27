@@ -267,10 +267,17 @@
             background: rgba(0, 0, 0, 0.5);
             color: white;
             text-align: center;
-            padding: 1rem;
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        .footer-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .discord-link {
@@ -372,12 +379,18 @@
                 </div>
             </div>
 
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>© 2022 by Nic Tech Copyrights</p>
-        <a href="https://discord.gg/your-discord-invite" class="discord-link" target="_blank">
-            Discord Server
-            <img src="assets/discord.png" alt="Discord Server" class="discord-icon">
-        </a>
+        <div class="footer-content">
+            <p>© 2022 by Nic Tech Copyrights</p>
+            <a href="https://discord.gg/your-discord-invite" class="discord-link" target="_blank">
+                Discord Server
+                <img src="assets/discord.png" alt="Discord Server" class="discord-icon">
+            </a>
+        </div>
     </footer>
 
     <script>
