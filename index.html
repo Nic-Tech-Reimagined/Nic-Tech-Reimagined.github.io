@@ -173,6 +173,54 @@
             transform: translateY(-5px);
         }
 
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .news-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
         .game-card h3 {
             font-size: 1.5rem;
             margin: 1rem 0;
@@ -263,6 +311,7 @@
             <a href="#home" onclick="showSection('home')">Home</a>
             <a href="#about" onclick="showSection('about')">About</a>
             <a href="#games" onclick="showSection('games')">Games</a>
+            <a href="#news" onclick="showSection('news')">News</a>
         </nav>
     </header>
 
@@ -304,6 +353,32 @@
                         <p>Our original game that started it all. While no longer actively developed, it remains available for those interested in Nic Tech's history.</p>
                         <a href="https://www.roblox.com/games/8543159388/Nic-Tech-Research-Facility-ALPHA" class="button" target="_blank">View Game</a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="section">
+            <div class="about-content">
+                <h2>Latest News</h2>
+                <div class="news-container">
+                    <article class="news-card">
+                        <img src="assets/Temp.png" alt="News Image" class="news-image">
+                        <div class="news-content">
+                            <h3>Subterranean Research Facility Beta Release</h3>
+                            <div class="news-meta">Posted on May 15, 2025</div>
+                            <p>We're excited to announce the beta release of our latest game! Join us in exploring the depths of the facility...</p>
+                            <a href="#" class="button">Read More</a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="assets/Temp.png" alt="News Image" class="news-image">
+                        <div class="news-content">
+                            <h3>Community Event: Virtual Tour</h3>
+                            <div class="news-meta">Posted on May 10, 2025</div>
+                            <p>Join us this weekend for a virtual tour of our upcoming features and meet the development team...</p>
+                            <a href="#" class="button">Read More</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
