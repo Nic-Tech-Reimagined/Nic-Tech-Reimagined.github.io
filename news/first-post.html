@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Nic Tech Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #40E0D0, #4169E1, #800080);
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        header {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            line-height: 1.6;
+        }
+
+        .post-content h1 {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .post-content p {
+            margin-bottom: 1rem;
+        }
+
+        .post-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html">
+            <img src="../assets/logo.png" alt="Nic Tech Logo" class="logo">
+        </a>
+        <h1>Nic Tech</h1>
+        <nav>
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#games">Games</a>
+            <a href="../index.html#news">News</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <div class="post-header">
+                <h1 class="post-title">Welcome to Nic Tech Blog</h1>
+                <div class="post-meta">January 1, 2024</div>
+            </div>
+            <div class="post-content">
+                <p>We're excited to launch our official blog where we'll be sharing regular updates about our games, technology innovations, and community news. Stay tuned for:</p>
+                <ul>
+                    <li>Development updates for Subterranean Research Facility</li>
+                    <li>Behind-the-scenes looks at our game development process</li>
+                    <li>Community highlights and events</li>
+                    <li>Technical deep-dives into our technology</li>
+                </ul>
+                <p>Make sure to join our Discord server to be part of the conversation and follow us for the latest updates!</p>
+                <a href="../index.html#news" class="back-button">← Back to News</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2022 by Nic Tech Copyrights</p>
+    </footer>
+</body>
+</html>
