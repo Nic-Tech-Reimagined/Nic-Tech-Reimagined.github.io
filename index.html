@@ -309,19 +309,144 @@
                 height: 200px;
             }
         }
+        /* Startup Animation Styles */
+        .startup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000428, #004e92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 5s ease-out;
+        }
+        
+        .startup-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/logo.png') no-repeat center, linear-gradient(to bottom, #40E0D0, #4169E1, #800080);
+            background-size: 0 0, cover;
+            filter: blur(8px);
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .startup-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 0%, transparent calc(100% - 1px), rgba(0, 255, 255, 0.5) 100%),
+                        linear-gradient(90deg, transparent 0%, transparent calc(100% - 1px), rgba(0, 255, 255, 0.5) 100%);
+            background-size: 50px 50px;
+            perspective: 500px;
+            transform: rotateX(45deg);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .startup-logo {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .startup-logo h1 {
+            color: #000;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .startup-loader {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #fff;
+            border-bottom-color: #fff;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .startup-status {
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-out {
+            opacity: 0;
+        }
+        
+        .content-container {
+            opacity: 0;
+            transition: opacity 5s ease-in;
+        }
+        
+        .fade-in {
+            opacity: 1;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .startup-sun {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff9500, #ff5e00);
+            border-radius: 50%;
+            top: 30%;
+            transform: translateY(-50%);
+            z-index: -1;
+            box-shadow: 0 0 100px 50px rgba(255, 94, 0, 0.5);
+        }
     </style>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="Nic Tech Logo" class="logo">
-        <h1>Nic Tech</h1>
-        <nav>
-            <a href="#home" onclick="showSection('home')">Home</a>
-            <a href="#about" onclick="showSection('about')">About</a>
-            <a href="#games" onclick="showSection('games')">Games</a>
-            <a href="#news" onclick="showSection('news')">News</a>
-        </nav>
-    </header>
+    <!-- Startup Animation -->
+    <div class="startup-container" id="startup">
+        <div class="startup-background"></div>
+        <div class="startup-grid"></div>
+        <div class="startup-sun"></div>
+        <div class="startup-logo">
+            <h1>Icon</h1>
+        </div>
+        <div class="startup-loader"></div>
+        <div class="startup-status" id="startup-status">Checking integrity for the websites files....</div>
+    </div>
+    
+    <div class="content-container" id="content-container">
+        <header>
+            <img src="assets/logo.png" alt="Nic Tech Logo" class="logo">
+            <h1>Nic Tech</h1>
+            <nav>
+                <a href="#home" onclick="showSection('home')">Home</a>
+                <a href="#about" onclick="showSection('about')">About</a>
+                <a href="#games" onclick="showSection('games')">Games</a>
+                <a href="#news" onclick="showSection('news')">News</a>
+            </nav>
+        </header>
 
     <main>
         <section id="home" class="section active">
@@ -350,7 +475,7 @@
                     <article class="news-card">
                         <div class="news-content">
                             <h3>Welcome to Nic Tech Blog</h3>
-                            <div class="news-meta">February 27, 2025</div>
+                            <div class="news-meta">January 1, 2024</div>
                             <p>We're excited to launch our official blog where we'll be sharing regular updates about our games, technology innovations, and community news.</p>
                             <a href="news/first-post.html" class="button">Read More</a>
                         </div>
@@ -372,7 +497,7 @@
                     </div>
                     <div class="game-card discontinued">
                         <div class="game-status">Discontinued</div>
-                        <img src="assets/Temp2.png" alt="Research Facility Icon" class="game-icon">
+                        <img src="assets/Temp.png" alt="Research Facility Icon" class="game-icon">
                         <h3>Nic Tech: Research Facility</h3>
                         <p>Our original game that started it all. While no longer actively developed, it remains available for those interested in Nic Tech's history.</p>
                         <a href="https://www.roblox.com/games/8543159388/Nic-Tech-Research-Facility-ALPHA" class="button" target="_blank">View Game</a>
@@ -387,12 +512,13 @@
     <footer>
         <div class="footer-content">
             <p>© 2022 by Nic Tech Copyrights</p>
-            <a href="https://discord.gg/dc4WypshJB" class="discord-link" target="_blank">
+            <a href="https://discord.gg/your-discord-invite" class="discord-link" target="_blank">
                 Discord Server
                 <img src="assets/discord.png" alt="Discord Server" class="discord-icon">
             </a>
         </div>
     </footer>
+    </div>
 
     <script>
         function showSection(sectionId) {
@@ -406,6 +532,31 @@
         window.addEventListener('load', () => {
             const hash = window.location.hash.slice(1) || 'home';
             showSection(hash);
+            
+            // Startup animation sequence
+            const startup = document.getElementById('startup');
+            const contentContainer = document.getElementById('content-container');
+            const statusText = document.getElementById('startup-status');
+            
+            // Simulate loading process
+            setTimeout(() => {
+                statusText.textContent = "No Problem and Error found...";
+            }, 3000);
+            
+            setTimeout(() => {
+                statusText.textContent = "Starting up...";
+            }, 6000);
+            
+            // Fade out startup animation and fade in content
+            setTimeout(() => {
+                startup.classList.add('fade-out');
+                contentContainer.classList.add('fade-in');
+                
+                // Remove startup element after fade out completes
+                setTimeout(() => {
+                    startup.classList.add('hidden');
+                }, 5000);
+            }, 8000);
         });
     </script>
 </body>
