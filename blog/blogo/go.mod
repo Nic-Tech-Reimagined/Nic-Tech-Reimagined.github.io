@@ -1,7 +1,8 @@
 module gitlab.com/pluja/blogo
 
 go 1.21
-toolchain go1.23.7
+
+toolchain go1.21.3
 
 require (
 	github.com/alecthomas/chroma/v2 v2.12.0
@@ -14,7 +15,7 @@ require (
 	github.com/gorilla/feeds v1.1.2
 	github.com/joho/godotenv v1.5.1
 	github.com/nbd-wtf/go-nostr v0.28.6
-	github.com/rs/cors v1.11.0
+	github.com/rs/cors v1.10.1
 	github.com/rs/zerolog v1.32.0
 	github.com/yuin/goldmark v1.7.0
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
@@ -37,7 +38,7 @@ require (
 	github.com/gobwas/pool v0.2.1 // indirect
 	github.com/gobwas/ws v1.3.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/glog v1.2.4 // indirect
+	github.com/golang/glog v1.2.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -56,9 +57,9 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20240213143201-ec583247a57a // indirect
-	golang.org/x/net v0.36.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	google.golang.org/protobuf v1.33.0 // indirect
+	golang.org/x/net v0.21.0 // indirect
+	golang.org/x/sys v0.17.0 // indirect
+	google.golang.org/protobuf v1.32.0 // indirect
 	gorm.io/driver/mysql v1.5.4 // indirect
 	gorm.io/gorm v1.25.7 // indirect
 )

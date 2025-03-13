@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nic Tech</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/weather.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
     <style>
         * {
             margin: 0;
@@ -18,6 +21,33 @@
             background: linear-gradient(to bottom, #40E0D0, #4169E1, #800080);
             display: flex;
             flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            display: none;
+            min-height: calc(100vh - 70px); /* Adjust 70px to match your header height */
+            width: 100%;
+        }
+
+        .section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            width: 100%;
         }
 
         header {
@@ -104,6 +134,12 @@
             height: 250px;
             margin: 2rem 0;
         }
+        
+        .main-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
 
         .year-text {
             color: white;
@@ -136,6 +172,8 @@
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             text-decoration: none;
+            margin-top: auto;
+            display: inline-block;
         }
 
         .button:hover {
@@ -160,6 +198,9 @@
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 600px;
         }
 
         .game-icon {
@@ -253,6 +294,53 @@
             color: white;
         }
 
+        .dev-progress {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            flex: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            transition: width 0.3s ease;
+        }
+
+        .milestones {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .milestone-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .milestone.completed .milestone-icon {
+            background: #4CAF50;
+        }
+
         @media (max-width: 768px) {
             .game-cards {
                 gap: 1rem;
@@ -331,37 +419,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('assets/logo.png') no-repeat center, linear-gradient(to bottom, #40E0D0, #4169E1, #800080);
-            background-size: 0 0, cover;
-            filter: blur(8px);
             z-index: -1;
             opacity: 0.7;
         }
-        
-        .startup-grid {
+
+        .startup-background video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(transparent 0%, transparent calc(100% - 1px), rgba(0, 255, 255, 0.5) 100%),
-                        linear-gradient(90deg, transparent 0%, transparent calc(100% - 1px), rgba(0, 255, 255, 0.5) 100%);
-            background-size: 50px 50px;
-            perspective: 500px;
-            transform: rotateX(45deg);
-            z-index: -1;
-            opacity: 0.5;
+            object-fit: cover;
+            filter: blur(8px);
         }
         
         .startup-logo {
-            width: 150px;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
+            width: 200px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 50px;
+        }
+        
+        .startup-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         
         .startup-logo h1 {
@@ -410,27 +494,39 @@
             100% { transform: rotate(360deg); }
         }
         
-        .startup-sun {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, #ff9500, #ff5e00);
-            border-radius: 50%;
-            top: 30%;
-            transform: translateY(-50%);
-            z-index: -1;
-            box-shadow: 0 0 100px 50px rgba(255, 94, 0, 0.5);
+        .loading-container {
+            text-align: center;
+            color: white;
         }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        #status-message {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        
+
     </style>
 </head>
 <body>
     <!-- Startup Animation -->
     <div class="startup-container" id="startup">
-        <div class="startup-background"></div>
-        <div class="startup-grid"></div>
-        <div class="startup-sun"></div>
+        <div class="startup-background">
+            <video autoplay muted loop playsinline>
+                <source src="assets/startup.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="startup-logo">
-            <h1>Icon</h1>
+            <img src="assets/logo.png" alt="Nic Tech Logo">
         </div>
         <div class="startup-loader"></div>
         <div class="startup-status" id="startup-status">Checking integrity for the websites files....</div>
@@ -445,15 +541,16 @@
                 <a href="#about" onclick="showSection('about')">About</a>
                 <a href="#games" onclick="showSection('games')">Games</a>
                 <a href="#news" onclick="showSection('news')">News</a>
+                <a href="#weather" onclick="showSection('weather')">Weather</a>
             </nav>
         </header>
 
     <main>
         <section id="home" class="section active">
-            <h1 class="hero-title">Welcome to the Future</h1>
-            <p class="year-text">We are in year 2025.</p>
-            <img src="assets/logo.png" alt="Nic Tech Logo" class="logo-large">
-            <p class="welcome-text">Welcome to Offically Nic Tech Site</p>
+            <h1 class="welcome-text">Welcome to the Future</h1>
+            <p style="color: white;">We are in year 2025.</p>
+            <img src="assets/logo.png" alt="Nic Tech Logo" class="main-logo">
+            <h1 class="main-title" style="color: white;">Welcome to Officially Nic Tech Site</h1>
             <div class="button-container">
                 <a href="#" class="button">The Main Game</a>
                 <a href="#" class="button">Roblox Group</a>
@@ -468,6 +565,51 @@
             </div>
         </section>
 
+        <section id="weather" class="section">
+            <div class="weather-section">
+                <div class="weather-header">
+                    <div class="weather-title">AccuWeather</div>
+                    <div class="weather-search">
+                        <input type="text" placeholder="Search for a location...">
+                        <button><i class="fas fa-search"></i>🔍</button>
+                    </div>
+                </div>
+                
+                <div class="weather-tabs">
+                    <div class="weather-tab active" id="current-tab" data-content="current-content">Current</div>
+                    <div class="weather-tab" id="forecast-tab" data-content="forecast-content">Forecast</div>
+                    <div class="weather-tab" id="radar-tab" data-content="radar-content">Radar</div>
+                    <div class="weather-tab" id="temperature-tab" data-content="temperature-content">Temperature</div>
+                </div>
+                
+                <div class="weather-content active" id="current-content">
+                    <div class="current-weather">
+                        <div id="current-weather-container">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weather-content" id="forecast-content">
+                    <div id="forecast-container">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                
+                <div class="weather-content" id="radar-content">
+                    <div id="radar-container" class="radar-container">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                
+                <div class="weather-content" id="temperature-content">
+                    <div id="temperature-container" class="radar-container">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="news" class="section">
             <div class="about-content">
                 <h2>Latest News</h2>
@@ -493,6 +635,25 @@
                         <img src="assets/Temp.png" alt="Subterranean Research Facility Icon" class="game-icon">
                         <h3>Nic Tech: Subterranean Research Facility</h3>
                         <p>Experience our latest and actively developed game. Explore the mysterious underground facility and uncover its secrets.</p>
+                        <div class="dev-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                            <div class="milestones">
+                                <div class="milestone completed">
+                                    <div class="milestone-icon"></div>
+                                    <span>Basic Gameplay Implementation</span>
+                                </div>
+                                <div class="milestone completed">
+                                    <div class="milestone-icon"></div>
+                                    <span>Core Systems Development</span>
+                                </div>
+                                <div class="milestone">
+                                    <div class="milestone-icon"></div>
+                                    <span>Advanced Features Integration</span>
+                                </div>
+                            </div>
+                        </div>
                         <a href="https://www.roblox.com/games/16502153598/Nic-Tech-Subterranean-Research-Facility-Beta" class="button" target="_blank">Play Now</a>
                     </div>
                     <div class="game-card discontinued">
@@ -500,11 +661,24 @@
                         <img src="assets/Temp.png" alt="Research Facility Icon" class="game-icon">
                         <h3>Nic Tech: Research Facility</h3>
                         <p>Our original game that started it all. While no longer actively developed, it remains available for those interested in Nic Tech's history.</p>
+                        <div class="dev-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                            <div class="milestones">
+                                <div class="milestone completed">
+                                    <div class="milestone-icon"></div>
+                                    <span>Initial Release</span>
+                                </div>
+                                <div class="milestone completed">
+                                    <div class="milestone-icon"></div>
+                                    <span>Final Update</span>
+                                </div>
+                            </div>
+                        </div>
                         <a href="https://www.roblox.com/games/8543159388/Nic-Tech-Research-Facility-ALPHA" class="button" target="_blank">View Game</a>
                     </div>
                 </div>
-            </div>
-
             </div>
         </section>
     </main>
@@ -528,6 +702,8 @@
             document.getElementById(sectionId).classList.add('active');
         }
 
+        // Status messages and countdown are now handled in the startup animation sequence
+
         // Handle initial section display based on hash
         window.addEventListener('load', () => {
             const hash = window.location.hash.slice(1) || 'home';
@@ -538,26 +714,59 @@
             const contentContainer = document.getElementById('content-container');
             const statusText = document.getElementById('startup-status');
             
-            // Simulate loading process
+            // Simulate loading process - Step 1: Checking files
+            // Step 1 is already set in HTML: "Checking integrity for the websites files...."
+            
+            // Step 2: No problems found
             setTimeout(() => {
                 statusText.textContent = "No Problem and Error found...";
             }, 3000);
             
+            // Step 3: Starting up
             setTimeout(() => {
                 statusText.textContent = "Starting up...";
             }, 6000);
             
-            // Fade out startup animation and fade in content
+            // Step 4: Connecting with countdown
+            let seconds = 20;
+            let countdownTimer;
+            
             setTimeout(() => {
-                startup.classList.add('fade-out');
-                contentContainer.classList.add('fade-in');
+                statusText.textContent = `Connecting Nic Tech Servers (${seconds} seconds)`;
                 
-                // Remove startup element after fade out completes
-                setTimeout(() => {
-                    startup.classList.add('hidden');
-                }, 5000);
-            }, 8000);
+                countdownTimer = setInterval(() => {
+                    seconds--;
+                    if (seconds >= 0) {
+                        statusText.textContent = `Connecting Nic Tech Servers (${seconds} seconds)`;
+                    } else {
+                        clearInterval(countdownTimer);
+                        // Step 5: Welcome message
+                        statusText.textContent = "Welcome to the Website!";
+                        
+                        // Fade out startup animation and fade in content after showing welcome message
+                        setTimeout(() => {
+                            startup.classList.add('fade-out');
+                            contentContainer.classList.add('fade-in');
+                            
+                            // Remove startup element after fade out completes
+                            setTimeout(() => {
+                                startup.classList.add('hidden');
+                            }, 5000);
+                        }, 2000); // Show welcome message for 2 seconds before fading
+                    }
+                }, 1000);
+            }, 9000);
         });
     </script>
+    <!-- Mapbox GL JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet" />
+    
+    <!-- Weather CSS and JS -->
+    <link rel="stylesheet" href="assets/css/weather.css">
+    <script src="assets/js/leaflet-setup.js"></script>
+    <script src="assets/js/weather-map.js"></script>
+    <script src="assets/js/weather.js"></script>
+    <script src="assets/js/weather-map.js"></script>
 </body>
 </html>
