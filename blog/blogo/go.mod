@@ -14,7 +14,7 @@ require (
 	github.com/gorilla/feeds v1.1.2
 	github.com/joho/godotenv v1.5.1
 	github.com/nbd-wtf/go-nostr v0.28.6
-	github.com/rs/cors v1.10.1
+	github.com/rs/cors v1.11.0
 	github.com/rs/zerolog v1.32.0
 	github.com/yuin/goldmark v1.7.0
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
