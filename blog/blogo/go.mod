@@ -1,6 +1,7 @@
 module gitlab.com/pluja/blogo
 
-go 1.21
+go 1.23.0
+
 toolchain go1.24.1
 
 require (
@@ -9,7 +10,7 @@ require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/go-chi/chi v1.5.5
-	github.com/go-chi/chi/v5 v5.0.12
+	github.com/go-chi/chi/v5 v5.2.2
 	github.com/go-chi/cors v1.2.1
 	github.com/gorilla/feeds v1.1.2
 	github.com/joho/godotenv v1.5.1
